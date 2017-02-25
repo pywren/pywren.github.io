@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>blog - pywren</title>
+    <title>benchmark - pywren</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,16 +9,16 @@
 
 
 
-<link rel="canonical" href="/pages/blog.html">
 
-        <meta name="author" content="Alexis Metaireau" />
-        <meta name="description" content="Short version for index and feeds" />
+    <meta name="author" content="Eric Jonas" />
+    <meta name="keywords" content="benchmark" />
 
-    <meta property="og:site_name" content="pywren" />
-    <meta property="og:type" content="article"/>
-    <meta property="og:title" content="blog"/>
-    <meta property="og:url" content="/pages/blog.html"/>
-    <meta property="og:description" content="Short version for index and feeds" />
+    <!-- Open Graph tags -->
+        <meta property="og:site_name" content="pywren" />
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="pywren"/>
+        <meta property="og:url" content=""/>
+        <meta property="og:description" content="pywren"/>
 
 
     <!-- Bootstrap -->
@@ -71,13 +71,21 @@ pywren            </a>
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 ">
-    <section id="content" class="body">
-        <h1 class="entry-title">blog</h1>
-        
-        <div class="entry-content">
-            
-        </div>
-    </section>
+            <article>
+                <h2><a href="/pywren_s3.html">Microservices and Terabits</a></h2>
+                <div class="summary"><p>Using Pywren to benchmark S3, we can achieve over 80 GB/sec of read performance and 60 GB/sec of write performance.</p>
+                    <a class="btn btn-default btn-xs" href="/pywren_s3.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="/pywren.html">Microservices and Teraflops</a></h2>
+                <div class="summary"><p>Can AWS Lambda be used for scientific computing ? Here we show how AWS Lambda, Amazon's microservice framework, can be easily used for large-scale scientific computation with our new framework, pywren.</p>
+                    <a class="btn btn-default btn-xs" href="/pywren.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+
         </div>
     </div>
 </div>
