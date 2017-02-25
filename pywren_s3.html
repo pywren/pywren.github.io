@@ -27,11 +27,12 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/theme/css/bootstrap.spacelab.min.css" type="text/css"/>
     <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="/theme/css/pygments/native.css" rel="stylesheet">
     <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+        <link href="/static/custom.css" rel="stylesheet">
 
 
 
@@ -41,8 +42,10 @@
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container">
-        <div class="navbar-header">
+  <div class="container ">
+    <div class="row">
+      <div class="container  col-lg-8 col-lg-offset-2"> 
+        <div class="navbar-header ">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -54,28 +57,25 @@ pywren            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                    <li><a href="/archives.html">blog</a></li>
-                         <li><a href="/pages/docs.html">
-                             documentation
-                          </a></li>
-                         <li><a href="/pages/examples.html">
-                             examples
-                          </a></li>
-                         <li><a href="/pages/gettingstarted.html">
-                             getting started
-                          </a></li>
+                    <li><a href="/blog.html">blog</a></li>
+                    <li><a href="/pages/gettingstarted.html">getting started</a></li>
+                    <li><a href="/pages/docs.html">documentation</a></li>
+                    <li><a href="/pages/examples.html">examples</a></li>
+                    <li><a href="http://github.com/pywren/pywren">code</a></li>
+                    <li><a href="https://github.com/pywren/pywren/issues">bugs</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             </ul>
         </div>
         <!-- /.navbar-collapse -->
+        </div> </div>
     </div>
 </div> <!-- /.navbar -->
 <!-- Banner -->
 <!-- End Banner -->
 <div class="container">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-8 col-lg-offset-2 ">
     <section id="content">
         <article>
             <header class="page-header">
@@ -130,7 +130,7 @@ results aren't confounded by compression, and everything is
 done with streaming file-like objects in Python. To write 1800 2GB objects
 to the S3 bucket <code>jonas-pywren-benchmark</code> I can use the following
 command:</p>
-<div class="highlight"><pre><span></span>$ python s3_benchmark.py write --bucket_name<span class="o">=</span>jonas-pywren-benchmark <span class="se">\</span>
+<div class="codehilite"><pre><span></span>$ python s3_benchmark.py write --bucket_name<span class="o">=</span>jonas-pywren-benchmark <span class="se">\</span>
     --mb_per_file<span class="o">=</span><span class="m">2000</span> --number<span class="o">=</span><span class="m">1800</span> --key_file<span class="o">=</span>big_keys.txt
 </pre></div>
 
@@ -139,7 +139,7 @@ command:</p>
 to <code>big_keys.txt</code>, one per line. This additionally generates a python pickle
 of <code>(start time, stop time, transfer rate)</code> for each job. We can then 
 read these generated s3 objects with with : </p>
-<div class="highlight"><pre><span></span>$ python s3_benchmark.py <span class="nb">read</span> --bucket_name<span class="o">=</span>jonas-pywren-benchmark   <span class="se">\</span>
+<div class="codehilite"><pre><span></span>$ python s3_benchmark.py <span class="nb">read</span> --bucket_name<span class="o">=</span>jonas-pywren-benchmark   <span class="se">\</span>
     --number<span class="o">=</span><span class="m">1800</span> --key_file<span class="o">=</span>big_keys.txt
 </pre></div>
 
@@ -166,13 +166,15 @@ and easily try out new machine learning and data analysis pipelines. <a href="/p
 </div>
 <footer>
    <div class="container">
-      <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2016 Eric Jonas
+         <div class="col-lg-8 col-lg-offset-2">           <hr>
+
+           &copy; 2016 Eric Jonas
+
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
-         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+         
       </div>
    </div>
 </footer>
@@ -184,6 +186,7 @@ and easily try out new machine learning and data analysis pipelines. <a href="/p
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 <script src="/theme/js/respond.min.js"></script>
 
+    <script src="/theme/js/bodypadding.js"></script>
 
 </body>
 </html>

@@ -22,11 +22,12 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/theme/css/bootstrap.spacelab.min.css" type="text/css"/>
     <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="/theme/css/pygments/native.css" rel="stylesheet">
     <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+        <link href="/static/custom.css" rel="stylesheet">
 
 
 
@@ -36,8 +37,10 @@
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container">
-        <div class="navbar-header">
+  <div class="container ">
+    <div class="row">
+      <div class="container  col-lg-8 col-lg-offset-2"> 
+        <div class="navbar-header ">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -49,53 +52,96 @@ pywren            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                    <li><a href="/archives.html">blog</a></li>
-                         <li><a href="/pages/docs.html">
-                             documentation
-                          </a></li>
-                         <li><a href="/pages/examples.html">
-                             examples
-                          </a></li>
-                         <li><a href="/pages/gettingstarted.html">
-                             getting started
-                          </a></li>
+                    <li><a href="/blog.html">blog</a></li>
+                    <li><a href="/pages/gettingstarted.html">getting started</a></li>
+                    <li><a href="/pages/docs.html">documentation</a></li>
+                    <li><a href="/pages/examples.html">examples</a></li>
+                    <li><a href="http://github.com/pywren/pywren">code</a></li>
+                    <li><a href="https://github.com/pywren/pywren/issues">bugs</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             </ul>
         </div>
         <!-- /.navbar-collapse -->
+        </div> </div>
     </div>
 </div> <!-- /.navbar -->
 <!-- Banner -->
+    <div class="jumbotron">
+      <div class="container">
+        <div class="row">
+          <div class="container  col-lg-8 col-lg-offset-2"> 
+            
+          <h1>pywren</h1>
+          Pywren lets you run your existing python code at massive scale via AWS Lambda
+          </div>
+        </div>
+      </div>
+    </div>
 <!-- End Banner -->
 <div class="container">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-8 col-lg-offset-2 ">
     <section id="content" class="body">
-        <h1 class="entry-title">home</h1>
         
-        <div class="entry-content">
-            <p>This is the content of my super blog post.
-<div class="jumbotron">
-  <h1>Hello, world!</h1>
-  Pywren makes it easy for you to run 100
-<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-    ...
-</div></p>
-        </div>
+            <div class="entry-content">
+            <h2>Overview</h2>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="n">pwex</span> <span class="o">=</span> <span class="n">pywren</span><span class="o">.</span><span class="n">default_executor</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">pwex</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
+</pre></div>
+
+
+<h2>Getting started</h2>
+<p>First, make sure you have an account
+with <a href="https://aws.amazon.com/">Amazon Web Services</a>. Then download and
+install pywren via PIP
+as
+<a href="http://localhost:8000/pages/gettingstarted.html">outlined in the getting started materials</a> Then
+enjoy running your code on thousands of cores simultaneously!</p>
+<h2>Technology</h2>
+<p>Key technologies leveraged include:</p>
+<ul>
+<li><a href="https://aws.amazon.com/lambda/">AWS Lambda</a> for fast, containerized, stateless compute</li>
+<li><a href="https://aws.amazon.com/s3/">AWS S3</a> for event coordination</li>
+<li><a href="https://www.continuum.io/downloads">Continuum's Anaconda python distribution</a> for up-to-date python packages</li>
+<li><a href="https://github.com/cloudpipe/cloudpickle">cloudpickle</a> for shipping functions back and forth</li>
+</ul>
+<p>The overall goal is to <a href="http://pythonhosted.org/futures/">mimic the Python 3.x futures interface</a> as
+much as make sense. </p>
+<p>Key Limitations:
+<em> low limit of simultaneous workers (maybe 3k if you reserve ahead)
+</em> finite amount of time per worker (300 seconds), but [see support for stand-alone workers!]
+* non-trivial function invocation overhead, sometimes 15 sec! </p>
+<h2>Publications</h2>
+<blockquote>
+<p><em>"Occupy the Cloud: Distributed computing for the 99%"</em> <a href="https://arxiv.org/abs/1702.04024">arXiv 1702.0402</a> 
+<a href="http://ericjonas.com">Eric Jonas</a>, <a href="http://shivaram.org/">Shivaram Venkataraman</a>, 
+<a href="https://people.eecs.berkeley.edu/~istoica/">Ion Stoica</a>, <a href="https://people.eecs.berkeley.edu/~brecht/">Benjamin Recht</a></p>
+</blockquote>
+<h2>Recent news</h2>
+            </div>
+              2016-10-27 <a href="/pywren_s3.html">Microservices and Terabits</a> - Using Pywren to benchmark S3 <p>
+              2016-10-25 <a href="/pywren.html">Microservices and Teraflops</a> - Can AWS Lambda be used for scientific computing ? <p>
     </section>
         </div>
     </div>
 </div>
 <footer>
    <div class="container">
-      <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2016 Eric Jonas
+         <div class="col-lg-8 col-lg-offset-2">           <hr>
+
+           &copy; 2016 Eric Jonas
+
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
-         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+         
       </div>
    </div>
 </footer>
@@ -107,6 +153,7 @@ pywren            </a>
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 <script src="/theme/js/respond.min.js"></script>
 
+    <script src="/theme/js/bodypadding.js"></script>
 
 </body>
 </html>

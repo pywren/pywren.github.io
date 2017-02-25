@@ -22,11 +22,12 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/theme/css/bootstrap.spacelab.min.css" type="text/css"/>
     <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="/theme/css/pygments/native.css" rel="stylesheet">
     <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+        <link href="/static/custom.css" rel="stylesheet">
 
 
 
@@ -36,8 +37,10 @@
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container">
-        <div class="navbar-header">
+  <div class="container ">
+    <div class="row">
+      <div class="container  col-lg-8 col-lg-offset-2"> 
+        <div class="navbar-header ">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -49,33 +52,97 @@ pywren            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                    <li><a href="/archives.html">blog</a></li>
-                         <li><a href="/pages/docs.html">
-                             documentation
-                          </a></li>
-                         <li><a href="/pages/examples.html">
-                             examples
-                          </a></li>
-                         <li class="active"><a href="/pages/gettingstarted.html">
-                             getting started
-                          </a></li>
+                    <li><a href="/blog.html">blog</a></li>
+                    <li><a href="/pages/gettingstarted.html">getting started</a></li>
+                    <li><a href="/pages/docs.html">documentation</a></li>
+                    <li><a href="/pages/examples.html">examples</a></li>
+                    <li><a href="http://github.com/pywren/pywren">code</a></li>
+                    <li><a href="https://github.com/pywren/pywren/issues">bugs</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             </ul>
         </div>
         <!-- /.navbar-collapse -->
+        </div> </div>
     </div>
 </div> <!-- /.navbar -->
 <!-- Banner -->
 <!-- End Banner -->
 <div class="container">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-8 col-lg-offset-2 ">
     <section id="content" class="body">
         <h1 class="entry-title">getting started</h1>
         
         <div class="entry-content">
-            <p>To get started, make sure you have an AWS account</p>
+            <p>To get started, make sure you have an AWS account, and install pywren.</p>
+<div class="codehilite"><pre><span></span>pip install pywren
+</pre></div>
+
+
+<h3>Check that your AWS credentials are setup correctly</h3>
+<div class="codehilite"><pre><span></span>pywren aws_check
+</pre></div>
+
+
+<h3>Walk through setup script</h3>
+<h3>First example</h3>
+<h3>When things go wrong</h3>
+<ol>
+<li>
+<p>getting the logs</p>
+</li>
+<li>
+<p>filing an issue</p>
+</li>
+<li></li>
+</ol>
+<h2>Getting started</h2>
+<p>First, make sure you have boto set up to use your AWS credentials and
+have a sane python installation (I recommend <a href="https://www.continuum.io/downloads">Anaconda</a>). Clone the repo from git and invoke:</p>
+<div class="codehilite"><pre><span></span>python setup.py install
+</pre></div>
+
+
+<p>Before you get started, make sure you have your AWS credentials set up 
+properly for use via Boto. You also need a s3 bucket that you can write to 
+to save data and retrieve results. </p>
+<p>Run the following from the prompt:</p>
+<div class="codehilite"><pre><span></span>pywren create_config --bucket_name YOUR_S3_BUCKET_NAME
+pywren create_role
+pywren deploy_lambda
+</pre></div>
+
+
+<ol>
+<li>This will create a default configuration file and place it in <code>~/.pywren_config</code>. </li>
+<li>Create the default IAM role to run the lambda process as <code>pywren_exec_role</code></li>
+<li>Deploy the lambda function to AWS using your account as <code>pywren1</code>. </li>
+<li>Place all intermediate data in <code>$YOUR_S3_BUCKET_NAME/pywren.jobs</code>. </li>
+</ol>
+<h3>Testing</h3>
+<p>You should now be able to run <code>examples/simpletest.py</code>. You should see the following:</p>
+<div class="codehilite"><pre><span></span># python examples/simpletest.py
+# Linux ip-10-13-24-185 4.4.19-29.55.amzn1.x86_64 #1 SMP Mon Aug 29 23:29:40 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
+</pre></div>
+
+
+<h2>Debugging (When things go wrong)</h2>
+<p>Pywren will print logging info to console by setting the environment
+varible as follows:</p>
+<div class="codehilite"><pre><span></span>PYWREN_LOGLEVEL=INFO
+</pre></div>
+
+
+<p>Logs are written to AWS Cloudwatch. To print the latest cloudwatch from the commandline use:</p>
+<div class="codehilite"><pre><span></span>pywren print_latest_logs
+</pre></div>
+
+
+<p>To inspect the logs through the AWS GUI get the URL for the current worker
+via </p>
+<div class="codehilite"><pre><span></span>pywren log_url
+</pre></div>
         </div>
     </section>
         </div>
@@ -83,13 +150,15 @@ pywren            </a>
 </div>
 <footer>
    <div class="container">
-      <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2016 Eric Jonas
+         <div class="col-lg-8 col-lg-offset-2">           <hr>
+
+           &copy; 2016 Eric Jonas
+
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
-         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+         
       </div>
    </div>
 </footer>
@@ -101,6 +170,7 @@ pywren            </a>
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 <script src="/theme/js/respond.min.js"></script>
 
+    <script src="/theme/js/bodypadding.js"></script>
 
 </body>
 </html>
