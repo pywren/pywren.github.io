@@ -113,10 +113,12 @@ enjoy running your code on thousands of cores simultaneously!</p>
 </ul>
 <p>The overall goal is to <a href="http://pythonhosted.org/futures/">mimic the Python 3.x futures interface</a> as
 much as make sense. </p>
-<p>Key Limitations:
-<em> low limit of simultaneous workers (maybe 3k if you reserve ahead)
-</em> finite amount of time per worker (300 seconds), but [see support for stand-alone workers!]
-* non-trivial function invocation overhead, sometimes 15 sec! </p>
+<p>Key Limitations:</p>
+<ul>
+<li>low limit of simultaneous workers (maybe 3k if you reserve ahead)</li>
+<li>finite amount of time per worker (300 seconds), but [see support for stand-alone workers!]</li>
+<li>non-trivial function invocation overhead, sometimes 15 sec! </li>
+</ul>
 <h2>Publications</h2>
 <blockquote>
 <p><em>"Occupy the Cloud: Distributed computing for the 99%"</em> <a href="https://arxiv.org/abs/1702.04024">arXiv 1702.0402</a> 
