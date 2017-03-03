@@ -11,21 +11,21 @@
 
 <link rel="canonical" href="/pages/gettingstarted.html">
 
-        <meta name="author" content="Alexis Metaireau" />
-        <meta name="description" content="Short version for index and feeds" />
+        <meta name="author" content="pywren" />
+        <meta name="description" content="Getting started with pywren" />
 
     <meta property="og:site_name" content="pywren" />
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="getting started"/>
     <meta property="og:url" content="/pages/gettingstarted.html"/>
-    <meta property="og:description" content="Short version for index and feeds" />
+    <meta property="og:description" content="Getting started with pywren" />
 
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="/theme/css/bootstrap.spacelab.min.css" type="text/css"/>
     <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="/theme/css/pygments/native.css" rel="stylesheet">
+    <link href="/theme/css/pygments/friendly.css" rel="stylesheet">
     <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
         <link href="/static/custom.css" rel="stylesheet">
 
@@ -55,7 +55,7 @@ pywren            </a>
                     <li><a href="/blog.html">blog</a></li>
                     <li><a href="/pages/gettingstarted.html">getting started</a></li>
                     <li><a href="/pages/docs.html">documentation</a></li>
-                    <li><a href="/pages/examples.html">examples</a></li>
+                    <li><a href="https://github.com/pywren/examples/">examples</a></li>
                     <li><a href="http://github.com/pywren/pywren">code</a></li>
                     <li><a href="https://github.com/pywren/pywren/issues">bugs</a></li>
             </ul>
@@ -75,42 +75,28 @@ pywren            </a>
         <h1 class="entry-title">getting started</h1>
         
         <div class="entry-content">
-            <p>To get started, make sure you have an AWS account, and install pywren.</p>
-<div class="codehilite"><pre><span></span>pip install pywren
+            <p>To get started, make sure you have an AWS account, and install pywren. You
+can do the installation from either pypi</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> pip install pywren
 </pre></div>
 
 
+<p>or from the <a href="https://github.com/pywren/pywren/">git repository</a>. This
+installs the pywren library as well as the <code>pywren</code> command-line tool. </p>
 <h3>Check that your AWS credentials are setup correctly</h3>
-<div class="codehilite"><pre><span></span>pywren aws_check
-</pre></div>
-
-
-<h3>Walk through setup script</h3>
-<h3>First example</h3>
-<h3>When things go wrong</h3>
-<ol>
-<li>
-<p>getting the logs</p>
-</li>
-<li>
-<p>filing an issue</p>
-</li>
-<li></li>
-</ol>
-<h2>Getting started</h2>
-<p>First, make sure you have boto set up to use your AWS credentials and
-have a sane python installation (I recommend <a href="https://www.continuum.io/downloads">Anaconda</a>). Clone the repo from git and invoke:</p>
-<div class="codehilite"><pre><span></span>python setup.py install
+<p>You need to be sure you have set up your AWS creditials. </p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> pywren get_aws_account_id
+<span class="go">Your AWS account ID is 942315755674</span>
 </pre></div>
 
 
 <p>Before you get started, make sure you have your AWS credentials set up 
-properly for use via Boto. You also need a s3 bucket that you can write to 
-to save data and retrieve results. </p>
+properly for use via Boto. </p>
 <p>Run the following from the prompt:</p>
-<div class="codehilite"><pre><span></span>pywren create_config --bucket_name YOUR_S3_BUCKET_NAME
-pywren create_role
-pywren deploy_lambda
+<div class="highlight"><pre><span></span><span class="gp">$</span> pywren create_config 
+<span class="gp">$</span> pywren create_role
+<span class="gp">$</span> pywren create_bucket
+<span class="gp">$</span> pywren deploy_lambda
 </pre></div>
 
 
@@ -118,30 +104,34 @@ pywren deploy_lambda
 <li>This will create a default configuration file and place it in <code>~/.pywren_config</code>. </li>
 <li>Create the default IAM role to run the lambda process as <code>pywren_exec_role</code></li>
 <li>Deploy the lambda function to AWS using your account as <code>pywren1</code>. </li>
-<li>Place all intermediate data in <code>$YOUR_S3_BUCKET_NAME/pywren.jobs</code>. </li>
+<li>Create a bucket in your default AZ named <code>pywren-bucket</code></li>
+<li>Place all intermediate data in <code>pywren-bucket/pywren.jobs</code>. </li>
 </ol>
 <h3>Testing</h3>
-<p>You should now be able to run <code>examples/simpletest.py</code>. You should see the following:</p>
-<div class="codehilite"><pre><span></span># python examples/simpletest.py
-# Linux ip-10-13-24-185 4.4.19-29.55.amzn1.x86_64 #1 SMP Mon Aug 29 23:29:40 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
+<p>You should now be able to run a test function . You should see the following:</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> pywren test_function
+
+<span class="go">function returned: Hello world</span>
 </pre></div>
 
 
+<h3>Next steps</h3>
+<p>Check out <a href="https://github.com/pywren/examples">the examples</a></p>
 <h2>Debugging (When things go wrong)</h2>
 <p>Pywren will print logging info to console by setting the environment
 varible as follows:</p>
-<div class="codehilite"><pre><span></span>PYWREN_LOGLEVEL=INFO
+<div class="highlight"><pre><span></span>PYWREN_LOGLEVEL=INFO
 </pre></div>
 
 
 <p>Logs are written to AWS Cloudwatch. To print the latest cloudwatch from the commandline use:</p>
-<div class="codehilite"><pre><span></span>pywren print_latest_logs
+<div class="highlight"><pre><span></span>pywren print_latest_logs
 </pre></div>
 
 
 <p>To inspect the logs through the AWS GUI get the URL for the current worker
 via </p>
-<div class="codehilite"><pre><span></span>pywren log_url
+<div class="highlight"><pre><span></span>pywren log_url
 </pre></div>
         </div>
     </section>

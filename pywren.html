@@ -31,7 +31,7 @@
         <link rel="stylesheet" href="/theme/css/bootstrap.spacelab.min.css" type="text/css"/>
     <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="/theme/css/pygments/native.css" rel="stylesheet">
+    <link href="/theme/css/pygments/friendly.css" rel="stylesheet">
     <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
         <link href="/static/custom.css" rel="stylesheet">
 
@@ -61,7 +61,7 @@ pywren            </a>
                     <li><a href="/blog.html">blog</a></li>
                     <li><a href="/pages/gettingstarted.html">getting started</a></li>
                     <li><a href="/pages/docs.html">documentation</a></li>
-                    <li><a href="/pages/examples.html">examples</a></li>
+                    <li><a href="https://github.com/pywren/examples/">examples</a></li>
                     <li><a href="http://github.com/pywren/pywren">code</a></li>
                     <li><a href="https://github.com/pywren/pywren/issues">bugs</a></li>
             </ul>
@@ -210,7 +210,7 @@ the
 as I could make it. Right now it basically just supports <code>map(func, data_list)</code>. </p>
 <p>As a trival example, let's add 1 to the first 10 numbers from our laptop. With PyWren
 installed locally:</p>
-<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">pywren</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pywren</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">addone</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -225,7 +225,7 @@ installed locally:</p>
 
 
 <p>The output is as expected:</p>
-<div class="codehilite"><pre><span></span>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+<div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 </pre></div>
 
 
@@ -254,7 +254,7 @@ use
 a
 <a href="https://github.com/ericmjonas/pywren/blob/master/examples/benchmark.py">slightly-better instrumented version</a> of
 the below code).</p>
-<div class="codehilite"><pre><span></span><span class="n">loopcnt</span> <span class="o">=</span> <span class="mi">10</span>
+<div class="highlight"><pre><span></span><span class="n">loopcnt</span> <span class="o">=</span> <span class="mi">10</span>
 
 <span class="k">def</span> <span class="nf">big_flops</span><span class="p">(</span><span class="n">std_dev</span><span class="p">):</span>
     <span class="n">running_sum</span> <span class="o">=</span> <span class="mi">0</span>
