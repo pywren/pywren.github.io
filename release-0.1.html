@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>PyWren 0.1 - pywren</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="/release-0.1.html">
+
+        <meta name="author" content="Eric Jonas" />
+        <meta name="keywords" content="releases" />
+        <meta name="description" content="Annoucing PyWren 0.1, with Python 3 support, large-scale reducers, better logging, support for running on arbitray instances, and a new website!" />
+
+        <meta property="og:site_name" content="pywren" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="PyWren 0.1"/>
+        <meta property="og:url" content="/release-0.1.html"/>
+        <meta property="og:description" content="Annoucing PyWren 0.1, with Python 3 support, large-scale reducers, better logging, support for running on arbitray instances, and a new website!"/>
+        <meta property="article:published_time" content="2017-03-06" />
+            <meta property="article:section" content="releases" />
+            <meta property="article:tag" content="releases" />
+            <meta property="article:author" content="Eric Jonas" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.spacelab.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/friendly.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+        <link href="/static/custom.css" rel="stylesheet">
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container ">
+    <div class="row">
+      <div class="container  col-lg-8 col-lg-offset-2"> 
+        <div class="navbar-header ">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+pywren            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/blog.html">blog</a></li>
+                    <li><a href="/pages/gettingstarted.html">getting started</a></li>
+                    <li><a href="/pages/docs.html">documentation</a></li>
+                    <li><a href="https://github.com/pywren/examples/">examples</a></li>
+                    <li><a href="http://github.com/pywren/pywren">code</a></li>
+                    <li><a href="https://github.com/pywren/pywren/issues">bugs</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+        </div> </div>
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 ">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/release-0.1.html"
+                       rel="bookmark"
+                       title="Permalink to PyWren 0.1">
+                        PyWren 0.1
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-03-06T00:00:00-08:00"> Mon 06 March 2017</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/releases.html">releases</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>Today we're excited to annouce the latest version of PyWren, version 0.1. This
+is our first release with a stand-alone mode, a <code>reduce</code> verb, and Python 3 support. 
+A lot has happened over the past few months with PyWren. There was a a
+talk AnacondaCon and we
+were
+<a href="https://thenewstack.io/aws-lambda-finds-unexpected-market-scientific-computing/">written up at the the New Stack</a>.
+We posted our latest paper on the
+arXiv,
+<a href="https://arxiv.org/abs/1702.04024">Occupy the Cloud: Distributed Computing for the 99%</a>. We
+<a href="https://github.com/pywren/">moved the project to a github organization</a> and
+split off
+and <a href="https://github.com/pywren/examples">organized the examples</a>.</p>
+<h2>Stand-alone mode</h2>
+<p>We sometimes run into situations where we can't get around Lambda's
+limits of runtime and memory, or need a GPU, or want to run our code
+on a machine with 2 TB of RAM. We created a new type of executor,
+<code>standalone</code>, which runs PyWren jobs inside our Anaconda runtime on
+arbitrary EC2 instances, using Amazon's SQS as a queue dispatch
+system.  Jobs can run for up to 12 hours, and the available memory is
+constrained only by the instance type. When the queue is empty, the
+instance will shut itself down automatically.</p>
+<p>Note that this feature is still somewhat experimental, and
+we're actively soliciting feedback. We'll have a complete
+example of use soon. </p>
+<h2>Reduce</h2>
+<p>Up till now, PyWren has largely supported <code>map</code>-like
+functionality. Many machine-learning workloads consist of a
+featurization step that is embarrassingly parallel, followd by a large
+distributed machine-learning operation that aggregates the result of
+that featurization.</p>
+<p>Enter <code>reduce</code>. Now you can write</p>
+<div class="highlight"><pre><span></span><span class="n">lexec</span> <span class="o">=</span> <span class="n">pywren</span><span class="o">.</span><span class="n">lambda_executor</span><span class="p">()</span>
+<span class="n">sexec</span> <span class="o">=</span> <span class="n">pywren</span><span class="o">.</span><span class="n">standalone_executor</span><span class="p">()</span>
+
+<span class="n">features</span> <span class="o">=</span> <span class="n">lexec</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">create_feature</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sexec</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">train_model</span><span class="p">,</span> <span class="n">features</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The benefit here is the standalone executor can be one of the massive
+AWS instances, like the <code>x1.32xlarge</code>, with 2 TB of ram and 64 cores. Even
+if training your model takes an hour, it's only $14. </p>
+<p>This functionality is also experimental, and we'll have a good
+example soon! </p>
+<h2>Python 3 support</h2>
+<p>Based on great work by <a href="https://github.com/washcycle">@washcycle</a>, we now have
+full Python 3 support and Python 3.5 and 3.6 are fully-supported runtimes. </p>
+<h2>Other improvements:</h2>
+<ul>
+<li>New website, <a href="http://pywren.io">pywren.io</a></li>
+<li>Additional contributors, especially <a href="https://people.eecs.berkeley.edu/~qifan/">Qifan Pu</a> and <a href="http://shivaram.org/">Shivaram Venkataraman</a>, and support from both the Berkeley Center for Computational Imaging (via <a href="https://people.eecs.berkeley.edu/~brecht/">Ben Recht</a>) and the <a href="https://rise.cs.berkeley.edu/">UC Berkeley RISE Lab </a> (thanks to <a href="https://people.eecs.berkeley.edu/~istoica/">Ion Stoica</a> ) </li>
+<li>Installable via PyPi</li>
+<li>Improved error handling and catching of exceptions</li>
+</ul>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-8 col-lg-offset-2">           <hr>
+
+           &copy; 2017 University of California, Berkeley
+
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+    <script src="/theme/js/bodypadding.js"></script>
+
+</body>
+</html>
