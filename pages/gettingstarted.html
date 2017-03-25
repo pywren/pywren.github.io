@@ -83,15 +83,48 @@ can do the installation from either pypi</p>
 
 <p>or from the <a href="https://github.com/pywren/pywren/">git repository</a>. This
 installs the pywren library as well as the <code>pywren</code> command-line tool. </p>
-<h3>Check that your AWS credentials are setup correctly</h3>
-<p>You need to be sure you have set up your AWS creditials. </p>
+<h2>Interactive setup</h2>
+<p>As of <code>v0.2</code> PyWren now has an interactive setup script, which you can
+run via <code>pywren-setup</code>, which will prompt you for various configuration
+options. It is recommended to hit enter and simply accept the defaults. </p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> pyren-setup
+
+<span class="go">This is the PyWren interactive setup script</span>
+<span class="go">Your AWS configuration appears to be set up, and your account ID is 71825125821</span>
+<span class="go">This interactive script will set up your initial PyWren configuration.</span>
+<span class="go">If this is your first time using PyWren then accepting the defaults should be fine.</span>
+<span class="go">What is your default aws region? [us-west-2]:</span>
+<span class="go">Location for config file:  [~/.pywren_config]:</span>
+<span class="go">PyWren requires an s3 bucket to store intermediate data. What s3 bucket would you like to use? [jonas-pywren-604]:</span>
+<span class="go">Bucket does not currently exist, would you like to create it? [Y/n]: Y</span>
+<span class="go">PyWren prefixes every object it puts in S3 with a particular prefix.</span>
+<span class="go">PyWren s3 prefix:  [pywren.jobs]:</span>
+<span class="go">Would you like to configure advanced PyWren properties? [y/N]:</span>
+<span class="go">PyWren standalone mode uses dedicated AWS instances to run PyWren tasks. This is more flexible, but more expensive with fewer simultaneous workers.</span>
+<span class="go">Would you like to enable PyWren standalone mode? [y/N]:</span>
+<span class="go">Creating config /Users/jonas/.pywren_config</span>
+<span class="go">new default file created in ~/.pywren_config</span>
+<span class="go">lambda role is pywren_exec_role_1</span>
+<span class="go">Creating bucket jonas-pywren-604.</span>
+<span class="go">Creating role.</span>
+<span class="go">Deploying lambda.</span>
+<span class="go">Pausing for 5 seconds for changes to propagate.</span>
+<span class="go">Pausing for 5 seconds for changes to propagate. </span>
+<span class="go">Successfully created function. </span>
+<span class="go">Pausing for 10 sec for changes to propoagate.</span>
+<span class="go">function returned: Hello world</span>
+</pre></div>
+
+
+<h2>Manual setup</h2>
+<p>The manual setup is only recommended for advanced users. </p>
+<p>Before you get started, make sure you have your AWS credentials set up 
+properly for use via Boto, the python AWS library. </p>
 <div class="highlight"><pre><span></span><span class="gp">$</span> pywren get_aws_account_id
 <span class="go">Your AWS account ID is 942315755674</span>
 </pre></div>
 
 
-<p>Before you get started, make sure you have your AWS credentials set up 
-properly for use via Boto. </p>
 <p>Run the following from the prompt:</p>
 <div class="highlight"><pre><span></span><span class="gp">$</span> pywren create_config 
 <span class="gp">$</span> pywren create_role
@@ -133,6 +166,10 @@ varible as follows:</p>
 via </p>
 <div class="highlight"><pre><span></span>pywren log_url
 </pre></div>
+
+
+<h2>Permissions and IAM</h2>
+<p>PyWren needs </p>
         </div>
     </section>
         </div>
