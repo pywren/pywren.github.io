@@ -136,7 +136,7 @@ featurization step that is embarrassingly parallel, followd by a large
 distributed machine-learning operation that aggregates the result of
 that featurization.</p>
 <p>Enter <code>reduce</code>. Now you can write</p>
-<div class="highlight"><pre><span></span><span class="n">lexec</span> <span class="o">=</span> <span class="n">pywren</span><span class="o">.</span><span class="n">lambda_executor</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><span class="n">lexec</span> <span class="o">=</span> <span class="n">pywren</span><span class="o">.</span><span class="n">lambda_executor</span><span class="p">()</span>
 <span class="n">sexec</span> <span class="o">=</span> <span class="n">pywren</span><span class="o">.</span><span class="n">standalone_executor</span><span class="p">()</span>
 
 <span class="n">features</span> <span class="o">=</span> <span class="n">lexec</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">create_feature</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>

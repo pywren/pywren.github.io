@@ -130,7 +130,7 @@ results aren't confounded by compression, and everything is
 done with streaming file-like objects in Python. To write 1800 2GB objects
 to the S3 bucket <code>jonas-pywren-benchmark</code> I can use the following
 command:</p>
-<div class="highlight"><pre><span></span>$ python s3_benchmark.py write --bucket_name<span class="o">=</span>jonas-pywren-benchmark <span class="se">\</span>
+<div class="codehilite"><pre><span></span>$ python s3_benchmark.py write --bucket_name<span class="o">=</span>jonas-pywren-benchmark <span class="se">\</span>
     --mb_per_file<span class="o">=</span><span class="m">2000</span> --number<span class="o">=</span><span class="m">1800</span> --key_file<span class="o">=</span>big_keys.txt
 </pre></div>
 
@@ -139,7 +139,7 @@ command:</p>
 to <code>big_keys.txt</code>, one per line. This additionally generates a python pickle
 of <code>(start time, stop time, transfer rate)</code> for each job. We can then 
 read these generated s3 objects with with : </p>
-<div class="highlight"><pre><span></span>$ python s3_benchmark.py <span class="nb">read</span> --bucket_name<span class="o">=</span>jonas-pywren-benchmark   <span class="se">\</span>
+<div class="codehilite"><pre><span></span>$ python s3_benchmark.py <span class="nb">read</span> --bucket_name<span class="o">=</span>jonas-pywren-benchmark   <span class="se">\</span>
     --number<span class="o">=</span><span class="m">1800</span> --key_file<span class="o">=</span>big_keys.txt
 </pre></div>
 

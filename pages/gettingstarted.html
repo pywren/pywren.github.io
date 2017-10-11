@@ -75,19 +75,27 @@ pywren            </a>
         <h1 class="entry-title">getting started</h1>
         
         <div class="entry-content">
-            <p>To get started, make sure you have an AWS account, and install pywren. You
-can do the installation from either pypi</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> pip install pywren
+            <p>To get started, make sure you have an AWS account, and install PyWren. </p>
+<h3>Obtaining an Amazon Web Services account</h3>
+<p>First make sure you are signed up for <a href="https://aws.amazon.com/">Amazon Web Services</a>. We recomment then installing the AWS command-line utilities via</p>
+<div class="codehilite"><pre><span></span><span class="go">pip install awscli</span>
+</pre></div>
+
+
+<p>and following <a href="http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html">their configuration instructions</a></p>
+<h3>Install PyWren</h3>
+<p>You can do the installation from either PyPI (recommended):</p>
+<div class="codehilite"><pre><span></span><span class="gp">$</span> pip install pywren
 </pre></div>
 
 
 <p>or from the <a href="https://github.com/pywren/pywren/">git repository</a>. This
 installs the pywren library as well as the <code>pywren</code> command-line tool. </p>
-<h2>Interactive setup</h2>
+<h3>Interactive PyWren setup</h3>
 <p>As of <code>v0.2</code> PyWren now has an interactive setup script, which you can
 run via <code>pywren-setup</code>, which will prompt you for various configuration
 options. It is recommended to hit enter and simply accept the defaults. </p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> pywren-setup
+<div class="codehilite"><pre><span></span><span class="gp">$</span> pywren-setup
 
 <span class="go">This is the PyWren interactive setup script</span>
 <span class="go">Your AWS configuration appears to be set up, and your account ID is 71825125821</span>
@@ -120,13 +128,13 @@ options. It is recommended to hit enter and simply accept the defaults. </p>
 <p>The manual setup is only recommended for advanced users. </p>
 <p>Before you get started, make sure you have your AWS credentials set up 
 properly for use via Boto, the python AWS library. </p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> pywren get_aws_account_id
+<div class="codehilite"><pre><span></span><span class="gp">$</span> pywren get_aws_account_id
 <span class="go">Your AWS account ID is 942315755674</span>
 </pre></div>
 
 
 <p>Run the following from the prompt:</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> pywren create_config 
+<div class="codehilite"><pre><span></span><span class="gp">$</span> pywren create_config 
 <span class="gp">$</span> pywren create_role
 <span class="gp">$</span> pywren create_bucket
 <span class="gp">$</span> pywren deploy_lambda
@@ -142,7 +150,7 @@ properly for use via Boto, the python AWS library. </p>
 </ol>
 <h3>Testing</h3>
 <p>You should now be able to run a test function . You should see the following:</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> pywren test_function
+<div class="codehilite"><pre><span></span><span class="gp">$</span> pywren test_function
 
 <span class="go">function returned: Hello world</span>
 </pre></div>
@@ -153,18 +161,18 @@ properly for use via Boto, the python AWS library. </p>
 <h2>Debugging (When things go wrong)</h2>
 <p>Pywren will print logging info to console by setting the environment
 varible as follows:</p>
-<div class="highlight"><pre><span></span>PYWREN_LOGLEVEL=INFO
+<div class="codehilite"><pre><span></span>PYWREN_LOGLEVEL=INFO
 </pre></div>
 
 
 <p>Logs are written to AWS Cloudwatch. To print the latest cloudwatch from the commandline use:</p>
-<div class="highlight"><pre><span></span>pywren print_latest_logs
+<div class="codehilite"><pre><span></span>pywren print_latest_logs
 </pre></div>
 
 
 <p>To inspect the logs through the AWS GUI get the URL for the current worker
 via </p>
-<div class="highlight"><pre><span></span>pywren log_url
+<div class="codehilite"><pre><span></span>pywren log_url
 </pre></div>
 
 

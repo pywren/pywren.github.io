@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>PyWren 0.3 - pywren</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="/release-0.3.html">
+
+        <meta name="author" content="Eric Jonas" />
+        <meta name="keywords" content="releases" />
+        <meta name="description" content="Annoucing PyWren 0.3, with region-specific runtimes, better error handling, and a storage API" />
+
+        <meta property="og:site_name" content="pywren" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="PyWren 0.3"/>
+        <meta property="og:url" content="/release-0.3.html"/>
+        <meta property="og:description" content="Annoucing PyWren 0.3, with region-specific runtimes, better error handling, and a storage API"/>
+        <meta property="article:published_time" content="2017-10-11" />
+            <meta property="article:section" content="releases" />
+            <meta property="article:tag" content="releases" />
+            <meta property="article:author" content="Eric Jonas" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.spacelab.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/friendly.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+        <link href="/static/custom.css" rel="stylesheet">
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container ">
+    <div class="row">
+      <div class="container  col-lg-8 col-lg-offset-2"> 
+        <div class="navbar-header ">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+pywren            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/blog.html">blog</a></li>
+                    <li><a href="/pages/gettingstarted.html">getting started</a></li>
+                    <li><a href="/pages/docs.html">documentation</a></li>
+                    <li><a href="https://github.com/pywren/examples/">examples</a></li>
+                    <li><a href="http://github.com/pywren/pywren">code</a></li>
+                    <li><a href="https://github.com/pywren/pywren/issues">bugs</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+        </div> </div>
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 ">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/release-0.3.html"
+                       rel="bookmark"
+                       title="Permalink to PyWren 0.3">
+                        PyWren 0.3
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-10-11T00:00:00-07:00"> Wed 11 October 2017</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/releases.html">releases</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>Today we're excited to release PyWren version 0.3. This release contains
+a number of important bug fixes, as we move towards some exciting
+new capabilities in 0.4. </p>
+<p>The latest version is installable via:</p>
+<div class="codehilite"><pre><span></span>pip install --upgrade pywren
+</pre></div>
+
+
+<p>And remember to redeploy your pywren function to AWS with </p>
+<div class="codehilite"><pre><span></span>pywren deploy_lambda
+</pre></div>
+
+
+<h2>Major Changes</h2>
+<ul>
+<li>switched to using region-specific runtimes with sharding</li>
+<li>refactored storage API for future support of other cloud providers</li>
+<li>support for python 3.4</li>
+<li>better error handling</li>
+<li>Developer stuff: APL2 license, using pylint on commit. </li>
+</ul>
+<p><strong>Closed issues:</strong></p>
+<ul>
+<li>Test Function doesn't parse command-line config <a href="https://github.com/pywren/pywren/issues/166">#166</a></li>
+<li>Error with None result <a href="https://github.com/pywren/pywren/issues/183">#183</a></li>
+<li>Create max list seatbelt <a href="https://github.com/pywren/pywren/issues/176">#176</a></li>
+<li>Make ALL_COMPLETED, ANY_COMPLETED, and ALWAYS available without having to specifically import <a href="https://github.com/pywren/pywren/issues/174">#174</a></li>
+<li>Generic Release clean-up <a href="https://github.com/pywren/pywren/issues/171">#171</a></li>
+<li>Change default runtime URLS to be region-specific <a href="https://github.com/pywren/pywren/issues/164">#164</a></li>
+<li>config files manually loaded must be patched with storage config <a href="https://github.com/pywren/pywren/issues/162">#162</a></li>
+<li>Straggler due to list-after-write consistency <a href="https://github.com/pywren/pywren/issues/160">#160</a></li>
+<li>Do not proceed with travis build if pylint fails. <a href="https://github.com/pywren/pywren/issues/157">#157</a></li>
+<li>I can't run test function <a href="https://github.com/pywren/pywren/issues/156">#156</a></li>
+<li>Describe .pywren_config in "getting started" <a href="https://github.com/pywren/pywren/issues/134">#134</a></li>
+<li>Mapping over an empty list should return an empty list <a href="https://github.com/pywren/pywren/issues/129">#129</a></li>
+<li>Create License File <a href="https://github.com/pywren/pywren/issues/116">#116</a></li>
+<li>Refactor storage APIs <a href="https://github.com/pywren/pywren/issues/108">#108</a></li>
+<li>Too big of runtime <a href="https://github.com/pywren/pywren/issues/105">#105</a></li>
+<li>Update <code>getting started</code> webpage on the interactive script <a href="https://github.com/pywren/pywren/issues/103">#103</a></li>
+<li>Have setup.py check for supported python versions <a href="https://github.com/pywren/pywren/issues/101">#101</a></li>
+<li>Support 3.4 runtime (and others) <a href="https://github.com/pywren/pywren/issues/95">#95</a></li>
+<li>Migrate travis script to using sec-since-epoch as GUID <a href="https://github.com/pywren/pywren/issues/91">#91</a></li>
+<li>Consider using boto3 s3 transfer interface <a href="https://github.com/pywren/pywren/issues/23">#23</a></li>
+<li>ImportError: No module named 'wren' <a href="https://github.com/pywren/pywren/issues/19">#19</a></li>
+</ul>
+<p><strong>Merged pull requests:</strong></p>
+<ul>
+<li>[Issue#183] removing none result check <a href="https://github.com/pywren/pywren/pull/184">#184</a> (<a href="https://github.com/ooq">ooq</a>)</li>
+<li>Fix issue 91 <a href="https://github.com/pywren/pywren/pull/182">#182</a> (<a href="https://github.com/ericmjonas">ericmjonas</a>)</li>
+<li>Release 0.3 <a href="https://github.com/pywren/pywren/pull/178">#178</a> (<a href="https://github.com/ericmjonas">ericmjonas</a>)</li>
+<li>New max-limit seatbelt <a href="https://github.com/pywren/pywren/pull/177">#177</a> (<a href="https://github.com/ericmjonas">ericmjonas</a>)</li>
+<li>Fix setup py version <a href="https://github.com/pywren/pywren/pull/173">#173</a> (<a href="https://github.com/ericmjonas">ericmjonas</a>)</li>
+<li>Lambda toobig seatbelts <a href="https://github.com/pywren/pywren/pull/172">#172</a> (<a href="https://github.com/ericmjonas">ericmjonas</a>)</li>
+<li>Issue#160 Straggler due to list-after-write consistency <a href="https://github.com/pywren/pywren/pull/170">#170</a> (<a href="https://github.com/ooq">ooq</a>)</li>
+<li>Switch to region specific runtimes <a href="https://github.com/pywren/pywren/pull/169">#169</a> (<a href="https://github.com/ericmjonas">ericmjonas</a>)</li>
+<li>Fix patching of storage handler config, then fix commandline <a href="https://github.com/pywren/pywren/pull/167">#167</a> (<a href="https://github.com/ericmjonas">ericmjonas</a>)</li>
+<li>change docstring <a href="https://github.com/pywren/pywren/pull/147">#147</a> (<a href="https://github.com/apengwin">apengwin</a>)</li>
+<li>Enable Pylint checks for PyWren <a href="https://github.com/pywren/pywren/pull/144">#144</a> (<a href="https://github.com/shivaram">shivaram</a>)</li>
+<li>Pylint cleanup <a href="https://github.com/pywren/pywren/pull/143">#143</a> (<a href="https://github.com/shivaram">shivaram</a>)</li>
+<li>Remove cloudpickle dependency and use local cloudpickle. <a href="https://github.com/pywren/pywren/pull/142">#142</a> (<a href="https://github.com/ooq">ooq</a>)</li>
+<li>add exclude modules argument to map <a href="https://github.com/pywren/pywren/pull/140">#140</a> (<a href="https://github.com/Vaishaal">Vaishaal</a>)</li>
+<li>Handle empty input list in map <a href="https://github.com/pywren/pywren/pull/133">#133</a> (<a href="https://github.com/shivaram">shivaram</a>)</li>
+<li>Add Apache v2 License <a href="https://github.com/pywren/pywren/pull/132">#132</a> (<a href="https://github.com/shivaram">shivaram</a>)</li>
+<li>[Issue#108] Refactor Storage API <a href="https://github.com/pywren/pywren/pull/119">#119</a> (<a href="https://github.com/ooq">ooq</a>)</li>
+<li>fixed minor spelling mistake <a href="https://github.com/pywren/pywren/pull/118">#118</a> (<a href="https://github.com/sean-smith">sean-smith</a>)</li>
+<li>Added validation for s3 bucket names and made username portion of def… <a href="https://github.com/pywren/pywren/pull/117">#117</a> (<a href="https://github.com/sean-smith">sean-smith</a>)</li>
+<li>Fix issue with bucket creation in us-east-1 <a href="https://github.com/pywren/pywren/pull/113">#113</a> (<a href="https://github.com/Donohue">Donohue</a>)</li>
+</ul>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-8 col-lg-offset-2">           <hr>
+
+           &copy; 2017 University of California, Berkeley
+
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+    <script src="/theme/js/bodypadding.js"></script>
+
+</body>
+</html>
